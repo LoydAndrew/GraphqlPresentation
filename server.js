@@ -18,7 +18,7 @@ server.use('/graphiql', graphiqlExpress({
 server.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
 
 server.listen(PORT, () =>{
-  console.log('Go to \n' + `http://my.example:${PORT}`+ '/graphiql');
+  console.log('Go to \n' + `http://example.com:${PORT}`+ '/graphiql');
 });
 
 
