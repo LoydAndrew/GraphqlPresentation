@@ -1,0 +1,39 @@
+{
+  "users" : [{
+  "id": 1,
+  "name": "Svyat",
+  "age": 18,
+  "gender":"male",
+  "label": "gansta_test_lead"
+},
+  {
+  "id": 3,
+  "name": "Oleg",
+  "age": 18,
+  "gender":"male"
+},
+
+  {
+  "id": 4,
+  "name": "Pasha",
+  "age": 18,
+  "gender":"male"
+},
+
+
+  {
+  "id": 6,
+  "name": "Roma",
+  "age": 18,
+  "gender":"male"
+},
+
+{
+  "id": 6,
+  "name": "Andrew",
+  "age": 18,
+  "gender": "male"
+}
+
+]
+}

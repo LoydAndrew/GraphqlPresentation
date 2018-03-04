@@ -43,13 +43,6 @@ const users = [{
 
 ];
 
-/*const resolvers = {
-  Query: {
-    RootQueryType: (parentValue, args) => {
-      return _.find(user, {id: args.id});
-    }
-  }
-};*/
 
 
 
