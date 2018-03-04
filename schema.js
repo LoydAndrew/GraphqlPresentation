@@ -1,7 +1,7 @@
-import resolvers from  './resolvers.js';
+// import resolvers from  './resolvers.js';
 import {GraphQLObjectType,GraphQLString,GraphQLInt,GraphQLSchema,GraphQLList} from 'graphql';
 import axios from 'axios';
-import users from './resolvers';
+// import users from './resolvers';
 
 const dbUrl = "http://localhost:3000/users/";
 const UserType= new GraphQLObjectType({
