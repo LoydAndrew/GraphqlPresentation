@@ -1,9 +1,9 @@
 import resolvers from  './resolvers.js';
 import {GraphQLObjectType,GraphQLString,GraphQLInt,GraphQLSchema,GraphQLList} from 'graphql';
-const _ = require('lodash');
+import axios from 'axios';
 import users from './resolvers';
 
-
+const dbUrl = "http://localhost:3000/users/";
 const UserType= new GraphQLObjectType({
   name: 'User',
   fields:{
@@ -21,15 +21,9 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: {id:{type:GraphQLInt}},
       resolve (parentValue, args) {
-        return _.find(users, {id: args.id});
-      }
-    },
-    age: {
-      type: UserType,
-      args:{age:{type:GraphQLInt}},
-      resolve (parentValue, args) {
-        return _.find(users,{age:args.age});
-      }
+        return axios.get(`${dbUrl}${args.id}`)
+        .then(resp => resp.data);
+    }
     }
   }
 });
