@@ -3,7 +3,19 @@ import {GraphQLObjectType,GraphQLString,GraphQLInt,GraphQLSchema,GraphQLList} fr
 import axios from 'axios';
 // import users from './resolvers';
 
-const dbUrl = "http://localhost:3000/users/";
+const dbUrlUser = "http://localhost:3000/users/";
+const dbUrlTeam = "http://localhost:3000/team/";
+
+
+const TeamType = new GraphQLObjectType ({
+  name:'Team',
+  fields:{
+    id:{type:GraphQLInt},
+    name:{type:GraphQLString},
+    description:{type:GraphQLString}
+  }
+});
+
 const UserType= new GraphQLObjectType({
   name: 'User',
   fields:{
@@ -11,8 +23,17 @@ const UserType= new GraphQLObjectType({
     id: {type:GraphQLInt},
     name:{type:GraphQLString} ,
     gender: {type:GraphQLString},
-    label: {type:GraphQLString}
-}});
+    label: {type:GraphQLString},
+    team:{
+      type:TeamType,
+      resolve(parentValue, args) {
+        console.log(parentValue, args);
+        return axios.get(`${dbUrlTeam}${parentValue.teamId}`)
+          .then(resp => resp.data);
+      }
+    }
+  }
+});
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -21,9 +42,9 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: {id:{type:GraphQLInt}},
       resolve (parentValue, args) {
-        return axios.get(`${dbUrl}${args.id}`)
+        return axios.get(`${dbUrlUser}${args.id}`)
         .then(resp => resp.data);
-    }
+      }
     }
   }
 });
