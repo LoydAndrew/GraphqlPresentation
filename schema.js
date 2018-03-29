@@ -12,7 +12,7 @@ const TeamType = new GraphQLObjectType ({
   fields:() => ({                     // closure he-he
     id:{type:GraphQLInt},
     name:{type:GraphQLString},
-    description:{type:GraphQLString},
+    description:{type: new GraphQLList (GraphQLString)},
     users: {
       type: new GraphQLList (UserType),
       resolve(parentValue, args) {
