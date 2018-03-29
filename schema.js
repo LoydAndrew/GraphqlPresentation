@@ -1,4 +1,3 @@
-// import resolvers from  './resolvers.js';
 import {
   GraphQLObjectType,
   GraphQLString,
@@ -10,7 +9,7 @@ import {
   from 'graphql';
 
 import axios from 'axios';
-// import users from './resolvers';
+
 
 const dbUrlUser = "http://localhost:3000/users/";
 const dbUrlTeam = "http://localhost:3000/team/";
@@ -57,18 +56,32 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     user: {
       type: UserType,
-      args: {id:{type:GraphQLInt}},
+      args: {id: {type: GraphQLInt}},
       resolve (parentValue, args) {
         return axios.get(`${dbUrlUser}${args.id}`)
-        .then(resp => resp.data); // for returning only data and not full object
+          .then(resp => resp.data); // for returning only data and not full object
       }
     },
     team: {
       type: TeamType,
-      args: {id:{type:GraphQLInt}},
-      resolve(parentValue, args) {
+      args: {id: {type: GraphQLInt}},
+      resolve (parentValue, args) {
         console.log(parentValue, args);
         return axios.get(`${dbUrlTeam}${args.id}`)
+          .then(resp => resp.data);
+      }
+    },
+    people: {
+      type: new GraphQLList(UserType),
+      resolve () {
+        return axios.get(`${dbUrlUser}`)
+          .then(resp => resp.data);
+      }
+    },
+    qaTeams: {
+      type: new GraphQLList(TeamType),
+      resolve () {
+        return axios.get(`${dbUrlTeam}`)
           .then(resp => resp.data);
       }
     }
