@@ -46,12 +46,12 @@
   {
     "id": 1,
     "name":"Core",
-    "description":["sc, besida,cms"]
+    "description":["sc", "besida", "cms"]
   },
     {
       "id": 2,
       "name":"Vas",
-      "description":["sites, apps,api"]
+      "description":["sites", "apps", "api"]
     }
 ]
 }
