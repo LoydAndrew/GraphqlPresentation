@@ -1,5 +1,14 @@
 // import resolvers from  './resolvers.js';
-import {GraphQLObjectType,GraphQLString,GraphQLInt,GraphQLSchema,GraphQLList} from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLSchema,
+  GraphQLList,
+  GraphQLNonNull
+}
+  from 'graphql';
+
 import axios from 'axios';
 // import users from './resolvers';
 
@@ -67,10 +76,57 @@ const RootQuery = new GraphQLObjectType({
 });
 
 
+const mutation = new GraphQLObjectType ({
+  name: 'Mutation',
+  fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLInt)},
+        name: {type: new GraphQLNonNull (GraphQLString)},
+        age: {type: GraphQLInt},
+        gender: {type: GraphQLString},
+        teamId:{type: GraphQLInt}
+      },
+      resolve (parentValue, {id, name}) {
+        console.log(parentValue, {id, name});
+        return axios.post(`${dbUrlUser}`, {id, name})
+          .then(res => res.data);
+      }
+    },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLInt)}
+      },
+      resolve (parentValue, {id}) {
+        console.log(parentValue, {id});
+        return axios.delete(`${dbUrlUser}${id}`)
+          .then(res => res.data);
+      }
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLInt)},
+        name: {type: GraphQLString},
+        age: {type: GraphQLInt},
+        gender: {type: GraphQLString},
+        teamId:{type: GraphQLInt}
+      },
+      resolve (parentValue, args) {
+        console.log(parentValue, args);
+        return axios.patch(`${dbUrlUser}${args.id}`, args) // id won't be updated caused db is clever patsan
+          .then(res => res.data);
+      }
+    }
+  }
+});
 
 
 module.exports = new GraphQLSchema ({
-  query: RootQuery
+  query: RootQuery,
+  mutation
 });
 
 export default GraphQLSchema;

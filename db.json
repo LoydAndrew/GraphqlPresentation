@@ -1,57 +1,65 @@
 {
-  "users" : [{
-  "id": 1,
-  "name": "Svyat",
-  "age": 18,
-  "gender":"male",
-  "label": "gansta_test_lead",
-  "teamId":1
-},
-  {
-  "id": 3,
-  "name": "Oleg",
-  "age": 18,
-  "gender":"male",
-  "teamId":1
-},
-
-  {
-  "id": 4,
-  "name": "Pasha",
-  "age": 18,
-  "gender":"male",
-  "teamId":1
-},
-
-
-  {
-  "id": 6,
-  "name": "Roma",
-  "age": 18,
-  "gender":"male",
-  "teamId":1
-},
-
-{
-  "id": 6,
-  "name": "Ihor",
-  "age": 18,
-  "gender": "male",
-  "teamId":2
-}
-
-],
-
+  "users": [
+    {
+      "id": 1,
+      "name": "Svyat",
+      "age": 18,
+      "gender": "male",
+      "label": "gansta_test_lead",
+      "teamId": 1
+    },
+    {
+      "id": 3,
+      "name": "Oleg",
+      "age": 18,
+      "gender": "male",
+      "teamId": 1
+    },
+    {
+      "id": 4,
+      "name": "Pasha",
+      "age": 18,
+      "gender": "male",
+      "teamId": 1
+    },
+    {
+      "id": 6,
+      "name": "Roma",
+      "age": 18,
+      "gender": "male",
+      "teamId": 1
+    },
+    {
+      "id": 6,
+      "name": "Ihor",
+      "age": 18,
+      "gender": "male",
+      "teamId": 2
+    },
+    {
+      "id": 9,
+      "name": "Dimasik",
+      "teamId": 1
+    }
+  ],
   "team": [
-  {
-    "id": 1,
-    "name":"Core",
-    "description":["sc", "besida", "cms"]
-  },
+    {
+      "id": 1,
+      "name": "Core",
+      "description": [
+        "sc",
+        "besida",
+        "cms"
+      ]
+    },
     {
       "id": 2,
-      "name":"Vas",
-      "description":["sites", "apps", "api"]
+      "name": "Vas",
+      "description": [
+        "sites",
+        "apps",
+        "api"
+      ]
     }
-]
+  ]
 }
